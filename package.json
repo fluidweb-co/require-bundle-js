@@ -1,0 +1,38 @@
+{
+  "name": "require-bundle-js",
+  "version": "1.0.0",
+  "description": "Resource dependency manager to asyncronously load JS, CSS or Images as a bundle.",
+  "keywords": [
+    "require",
+    "bundle",
+    "loadjs"
+  ],
+  "main": "dist/smooth-parallax.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fluidweb-co/require-bundle-js.git"
+  },
+  "author": "Fluidweb.co",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fluidweb-co/require-bundle-js/issues"
+  },
+  "homepage": "https://github.com/fluidweb-co/require-bundle-js",
+  "devDependencies": {
+    "del": "^5.1.0",
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-plumber": "^1.2.1",
+    "gulp-rename": "^2.0.0",
+    "gulp-replace": "^1.0.0",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-uglify": "^3.0.2",
+    "gulp-watch": "^5.0.1",
+    "load-json-file": "^6.2.0",
+    "loadjs": "^4.2.0",
+    "uglify-js": "^3.8.0"
+  }
+}
