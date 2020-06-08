@@ -54,7 +54,7 @@ gulp.task( 'build-js', gulp.series( 'get-ver', 'clean-js', function( done ) {
   .pipe(concat('require-bundle.js'))
   .pipe(gulp.dest('./js/')) // save .js
   .pipe(uglify())
-	.pipe(rename({suffix: settings.assetsVersion + '.min'}))
+	.pipe(rename({suffix: '.min'}))
 	.pipe(sourcemaps.write('maps'))
 	.pipe(gulp.dest('./js/')); // save .min.js
 
