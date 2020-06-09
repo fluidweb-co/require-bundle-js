@@ -29,7 +29,7 @@ Setting up is pretty straight-forward. Just download the script from __dist__ fo
 Require Bundle is also available on NPM:
 
 ```sh
-npm install require-bundle-js
+$ npm install require-bundle-js
 ```
 
 
