@@ -329,6 +329,26 @@ return loadjs;
 
 
 	/******************
+	 * PRIVATE METHODS
+	 *****************/
+
+
+
+	/**
+	 * Maybe autoload bundles
+	 */
+	var maybeAutoload = function() {
+		_publicMethods.getIds().forEach( function( bundleId ) {
+			var bundle = _bundles[ bundleId ];
+			if ( typeof bundle.autoLoadSelector === 'string' && document.querySelector( bundle.autoLoadSelector ) ) {
+				_publicMethods.require( bundleId, bundle.callbackFn );
+			}
+		} );
+	}
+
+
+
+	/******************
 	 * PUBLIC METHODS
 	 *****************/
 
@@ -378,9 +398,21 @@ return loadjs;
 	 * @param   {String}  bundleId  Bundle ID
 	 * @param   {Array}   deps      Array of resource paths
 	 */
-	_publicMethods.register = function( bundleId, deps ) {
-		if ( _publicMethods.hasBundle( bundleId ) ) return false;
-		_bundles[ bundleId ] = deps;
+	_publicMethods.register = function( bundleId, deps, autoLoadSelector, callbackFn ) {
+		// Already registered
+		if ( _publicMethods.hasBundle( bundleId ) ) { 
+			console.log( 'Bundle already registered: `' + bundleId + '`' );
+			return false;
+		};
+
+		// Register
+		_bundles[ bundleId ] = {
+			bundleId: bundleId,
+			deps: deps,
+			autoLoadSelector: autoLoadSelector,
+			callbackFn: callbackFn,
+		}
+
 		return true;
 	};
 
@@ -401,13 +433,22 @@ return loadjs;
 		
 		// Load each bundle
 		bundleIds.forEach( function( bundleId ) {
-			if ( ! loadjs.isDefined( bundleId )) loadjs( _publicMethods.getBundle( bundleId ), bundleId );
+			var bundle = _publicMethods.getBundle( bundleId );
+			if ( bundle ) {
+				if ( ! loadjs.isDefined( bundleId ) ) loadjs( bundle.deps, bundleId );
+			}
 		});
 		
 		// Run callback when ready
 		loadjs.ready( bundleIds, callbackFn );
 	};
 
+
+
+	/**
+	 * Add load event listener to auto-load bundles
+	 */
+	window.addEventListener( 'load', maybeAutoload );
 
 
 	//

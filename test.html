@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Require Bundle Test</title>
+  <script type="text/javascript" src="dist/require-bundle.min.js"></script>
+  <script type="text/javascript">
+    var log = function( message ) {
+        var debugContainer = document.querySelector( '.debug-container' );
+        if ( debugContainer ) {
+            var newMessage = document.createElement( 'p' );
+            newMessage.innerText = message;
+            debugContainer.appendChild( newMessage );
+        }
+    }
+
+    var registerBundle = function( bundleName, resources, autoLoadSelector, callbackFn ) {
+        RequireBundle.register( bundleName, resources, autoLoadSelector, callbackFn );
+        log( 'Registered bundle: `' + bundleName + '`' );
+    }
+
+    var registerBundles = function() {
+        // Register
+        registerBundle( 'smooth-parallax', [ 'https://raw.githubusercontent.com/diegoversiani/smooth-parallax/master/dist/smooth-parallax.min.js' ] );
+        registerBundle( 'hamburger-menu', [ 'https://raw.githubusercontent.com/center-key/hamburger-menu/master/dist/hamburger-menu.min.js', 'https://raw.githubusercontent.com/center-key/hamburger-menu/master/dist/hamburger-menu.min.css' ] );
+
+        // Register with auto-load
+        registerBundle( 'slider', [ 'https://raw.githubusercontent.com/thomaslanciaux/Slider/master/slider.js' ], '.slider-wrapper', function(){ log( 'Auto-loaded bundle: `slider`' ); } );
+    }
+
+    var requireBundlesViaScript = function() {
+        RequireBundle.require( 'smooth-parallax', function() { log( 'Loaded bundle: `smooth-parallax`' ); } );
+        RequireBundle.require( 'hamburger-menu', function() { log( 'Loaded bundle: `hamburger-menu`' ); } );
+    }
+
+    window.addEventListener( "DOMContentLoaded", function () { log( 'DOM Content loaded' ); } );
+    window.addEventListener( "DOMContentLoaded", function () { if ( window.RequireBundle ) { log( 'Require Bundle loaded' ); } } );
+    window.addEventListener( "DOMContentLoaded", function () { if ( window.RequireBundle ) { registerBundles(); } } );
+    window.addEventListener( "load", function () { log( 'Page loaded' ); } );
+    window.addEventListener( "load", function () { if ( window.RequireBundle ) { requireBundlesViaScript(); } } );
+  </script>
+</head>
+<body>
+    
+    <div class="instructions">
+        Notes:
+        <ul>
+            <li>All bundles are registered as early as possible (on page load in this test)</li>
+            <li>Bundles <code>smooth-parallax</code> and <code>hamburger-menu</code> are loaded via a function executed on page load</li>
+            <li>Bundle <code>slider</code> is auto-loaded when an element with class <code>.slider-wrapper</code> is present on the page (temporarily remove the element to test the auto-load feature)</li>
+        </ul>
+    </div>
+    
+    <hr/>
+    
+    <div class="slider-wrapper">
+        slider-wrapper present
+    </div>
+
+    <hr/>
+
+    <div class="debug-container">
+    </div>
+
+</body>
+</html>

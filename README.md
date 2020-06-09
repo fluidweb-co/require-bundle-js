@@ -4,7 +4,9 @@
 [![DragsterJS gzip size](http://img.badgesize.io/https://raw.githubusercontent.com/fluidweb-co/require-bundle-js/master/dist/require-bundle.min.js?compression=gzip
 )](https://raw.githubusercontent.com/fluidweb-co/require-bundle-js/master/dist/require-bundle.min.js)
 
-Some features on a web page require more than just the script file to work and will need to load styles and other resources, this is where Require Bundle can come in handy by providing a way to detect when a bundle of resources is necessary and loading it automatically (soon). Require Bundle will load various resources (scripts, styles or images) related to a feature in your application only on the pages which it is present.
+Some features on a web page require more than just the script file to work and will need to load styles and other resources, this is where Require Bundle can come in handy by providing a way to detect when a bundle of resources is necessary and loading it automatically.
+
+Require Bundle will load various resources related to a feature or elements in your application only on the pages which they are present present or required.
 
 Use cases:
 - When the page has collapsible blocks, load collapsible.js and collapsible.css
@@ -74,10 +76,12 @@ window.addEventListener( 'load', function(){
 } );
 ```
 
-b. (soon) Register a bundle passing in the selector to detect the html elements that require it and optionally the callback function to execute:
+b. Register a bundle passing in the selector to detect the html elements that require it and optionally the callback function to execute:
 ```js
 RequireBundle.register( 'fluid-slider', [ '//domain/js/fluid-slider.min.js', '//domain/css/fluid-slider.min.css' ], '.slider-wrapper', function(){ FluidSlider.init(); } ); // Auto-load when `.slider-wrapper` is present, then execute callback
 ```
+
+
 
 ## Contributing to Development
 
