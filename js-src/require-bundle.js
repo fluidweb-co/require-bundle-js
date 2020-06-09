@@ -7,7 +7,7 @@
 	} else if ( typeof exports === 'object' ) {
 	  module.exports = factory(root);
 	} else {
-	  root.requireBundle = factory(root);
+	  root.RequireBundle = factory(root);
 	}
   })(typeof global !== 'undefined' ? global : this.window || this.global, function (root) {
 
