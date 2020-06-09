@@ -34,7 +34,7 @@ gulp.task( 'get-ver', function( done ) {
 // gulp clean-js
 // Delete existing generated js files
 gulp.task( 'clean-js', function( done ) {
-	del.sync( [ './js/*.js', './js/maps/*.map' ] );
+	del.sync( [ './dist/*.js', './dist/maps/*.map' ] );
 	done();
 } );
 
@@ -44,19 +44,17 @@ gulp.task( 'clean-js', function( done ) {
 // gulp build-js. 
 // Uglifies and concat all JS files into one
 gulp.task( 'build-js', gulp.series( 'get-ver', 'clean-js', function( done ) {
-
-	// PLUGIN FILES
 	gulp.src([
-    settings.nodePath + 'loadjs/dist/loadjs.js',
+		settings.nodePath + 'loadjs/dist/loadjs.js',
 		settings.jsPath + 'require-bundle.js',
 	])
-  .pipe(sourcemaps.init())
-  .pipe(concat('require-bundle.js'))
-  .pipe(gulp.dest('./js/')) // save .js
-  .pipe(uglify())
+	.pipe(sourcemaps.init())
+	.pipe(concat('require-bundle.js'))
+	.pipe(gulp.dest('./dist/')) // save .js
+	.pipe(uglify())
 	.pipe(rename({suffix: '.min'}))
 	.pipe(sourcemaps.write('maps'))
-	.pipe(gulp.dest('./js/')); // save .min.js
+	.pipe(gulp.dest('./dist/')); // save .min.js
 
 	done();
 } ) );
