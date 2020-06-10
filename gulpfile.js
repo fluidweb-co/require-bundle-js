@@ -1,10 +1,11 @@
 // Defining settings
 var settings = {
-	pkg: {},
-	assetsVersion: '',
 	nodePath: './node_modules/',
 	jsPath: './js-src/'
 };
+
+
+
 // Defining requirements
 var gulp = require('gulp');
 var plumber = require('gulp-plumber');
@@ -12,21 +13,8 @@ var rename = require('gulp-rename');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var replace = require('gulp-replace');
-var loadJsonFile = require('load-json-file');
 var sourcemaps = require('gulp-sourcemaps');
 var del = require('del');
-
-
-// Run: 
-// gulp get-ver
-// Starts watcher. Watcher runs appropriate tasks on file changes
-gulp.task( 'get-ver', function( done ) {
-	var json = loadJsonFile.sync( 'package.json' );
-	settings.pkg = json;
-	settings.assetsVersion = '-' + json.version.replace( /\./gi, '' );
-
-	done();
-});
 
 
 
@@ -43,7 +31,7 @@ gulp.task( 'clean-js', function( done ) {
 // Run: 
 // gulp build-js. 
 // Uglifies and concat all JS files into one
-gulp.task( 'build-js', gulp.series( 'get-ver', 'clean-js', function( done ) {
+gulp.task( 'build-js', gulp.series( 'clean-js', function( done ) {
 	gulp.src([
 		settings.nodePath + 'loadjs/dist/loadjs.js',
 		settings.jsPath + 'require-bundle.js',

@@ -31,7 +31,6 @@
     "gulp-sourcemaps": "^2.6.5",
     "gulp-uglify": "^3.0.2",
     "gulp-watch": "^5.0.1",
-    "load-json-file": "^6.2.0",
     "loadjs": "^4.2.0",
     "uglify-js": "^3.8.0"
   }
