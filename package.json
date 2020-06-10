@@ -7,7 +7,7 @@
     "bundle",
     "loadjs"
   ],
-  "main": "dist/smooth-parallax.js",
+  "main": "dist/require-bundle.min.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
