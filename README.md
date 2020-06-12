@@ -20,7 +20,7 @@ You might also require bundles from inside other scripts:
 
 ## Installation
 
-Setting up is pretty straight-forward. Just download the script from __dist__ folder and include it in your HTML:
+Setting up is pretty straight-forward. Download the script from __dist__ folder and include it in your HTML preferably inside the document `<head>` element.
 
 ```html
 <script type="text/javascript" src="path/to/dist/require-bundle.min.js"></script>
