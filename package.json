@@ -1,6 +1,6 @@
 {
   "name": "require-bundle-js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Resource dependency manager to asyncronously load JS, CSS or Images as a bundle.",
   "keywords": [
     "require",
