@@ -81,6 +81,14 @@ b. Register a bundle passing in the selector to detect the html elements that re
 RequireBundle.register( 'fluid-slider', [ '//domain/js/fluid-slider.min.js', '//domain/css/fluid-slider.min.css' ], '.slider-wrapper', function(){ FluidSlider.init(); } ); // Auto-load when `.slider-wrapper` is present, then execute callback
 ```
 
+### 4. De-register a bundle
+
+You can remove a bundle from the registered bundles by calling the method `RequireBundle.deregister`:
+```js
+window.addEventListener( 'load', function(){
+    RequireBundle.deregister( 'fluid-slider' );
+} );
+```
 
 
 ## Contributing to Development
