@@ -17,6 +17,13 @@
         RequireBundle.register( bundleName, resources, autoLoadSelector, callbackFn );
         log( 'Registered bundle: `' + bundleName + '`' );
     }
+    
+    var deregisterBundle = function() {
+        bundleName = 'smooth-parallax';
+        RequireBundle.deregister( bundleName );
+        log( 'De-registered bundle: `' + bundleName + '`' );
+        log( 'Has bundle "' + bundleName + '": `' + RequireBundle.hasBundle( bundleName ) + '`' );
+    }
 
     var registerBundles = function() {
         // Register
@@ -24,7 +31,7 @@
         registerBundle( 'hamburger-menu', [ 'https://raw.githubusercontent.com/center-key/hamburger-menu/master/dist/hamburger-menu.min.js', 'https://raw.githubusercontent.com/center-key/hamburger-menu/master/dist/hamburger-menu.min.css' ] );
 
         // Register with auto-load
-        registerBundle( 'slider', [ 'https://raw.githubusercontent.com/thomaslanciaux/Slider/master/slider.js' ], '.slider-wrapper', function(){ log( 'Auto-loaded bundle: `slider`' ); } );
+        registerBundle( 'slider', [ 'https://raw.githubusercontent.com/thomaslanciaux/Slider/master/slider.js' ], '.slider-wrapper', function(){ log( 'Auto-loaded bundle: `slider`' ); } );
     }
 
     var requireBundlesViaScript = function() {
@@ -35,6 +42,7 @@
     window.addEventListener( "DOMContentLoaded", function () { log( 'DOM Content loaded' ); } );
     window.addEventListener( "DOMContentLoaded", function () { if ( window.RequireBundle ) { log( 'Require Bundle loaded' ); } } );
     window.addEventListener( "DOMContentLoaded", function () { if ( window.RequireBundle ) { registerBundles(); } } );
+    window.addEventListener( "DOMContentLoaded", function () { if ( window.RequireBundle ) { deregisterBundle(); } } );
     window.addEventListener( "load", function () { log( 'Page loaded' ); } );
     window.addEventListener( "load", function () { if ( window.RequireBundle ) { requireBundlesViaScript(); } } );
   </script>

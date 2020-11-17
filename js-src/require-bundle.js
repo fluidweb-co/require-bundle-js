@@ -110,6 +110,23 @@
 
 
 	/**
+	 * Deregister a bundle of resources
+	 *
+	 * @param   {String}  bundleId  Bundle ID
+	 */
+	_publicMethods.deregister = function( bundleId ) {
+		// Already registered
+		if ( _publicMethods.hasBundle( bundleId ) ) { 
+			delete _bundles[ bundleId ];
+			return true;
+		};
+
+		return false;
+	};
+
+
+
+	/**
 	 * Load bundle of dependencies using LoadJS
 	 *
 	 * @param   {Array}     bundleIds   Array of Bundle IDs to load
